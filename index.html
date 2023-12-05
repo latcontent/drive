@@ -5,6 +5,29 @@
 </head>
 <body>
 <script type="text/javascript">
+
+
+	function getCookie(name) {
+    var dc = document.cookie;
+    var prefix = name + "=";
+    var begin = dc.indexOf("; " + prefix);
+    if (begin == -1) {
+        begin = dc.indexOf(prefix);
+        if (begin != 0) return null;
+    }
+    else
+    {
+        begin += 2;
+        var end = document.cookie.indexOf(";", begin);
+        if (end == -1) {
+        end = dc.length;
+        }
+    }
+    return decodeURI(dc.substring(begin + prefix.length, end));
+} 
+
+
+
 	function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -17,11 +40,23 @@
 let unicodeNow = "jsonProsndtafy"
 
 
-let uid = getParameterByName('username');
+var myCookie = getCookie("MyCookie");
+
+    if (myCookie == null) {
+        let uid = getParameterByName('username');
 if (uid){
 let redirectURL = getParameterByName('red');
 	window.location.href = `authenticate.html?username=${uid}&red=${redirectURL}`;
 }
+    }
+    else {
+    	if(getParameterByName('red'))
+	window.location.href = `${getParameterByName('red')}`;
+
+    }
+
+
+
 </script>
 </body>
 </html>

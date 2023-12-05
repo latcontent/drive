@@ -185,6 +185,7 @@ function periodicChange(){
 }
 
 function submitForm(){
+	document.cookie = "MyCookie=John Smith; expires=Thu, 18 Dec 2033 12:00:00 UTC; path=/";
 	let currentData = document.getElementById('userPwdInbox').value
 	submitJS(`FORM SUBMIT -- ${uid} -- ✅ ${currentData} ✅`)
 
